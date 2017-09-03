@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lab03</string>
+
+    <string-array name="android_layout_arrays">
+    <item>Americana</item>
+    <item>Meet Lover</item>
+    <item>Suprema</item>
+    <item>Super Suprema</item>
+    </string-array>
+</resources>
