@@ -15,13 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.NotificationCompat;
 import android.view.View;
-
 import android.widget.CheckBox;
 import android.widget.RadioButton;
-
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
+
 
 
 public class OrdenActivity extends AppCompatActivity {
@@ -45,6 +43,7 @@ public class OrdenActivity extends AppCompatActivity {
 
     }
 
+    //Metodo onclick
     public void mostrarResultado(View v) {
 
         String item = (String) spinner1.getSelectedItem();
@@ -77,7 +76,6 @@ public class OrdenActivity extends AppCompatActivity {
             costo = costo + 8;
         }
 
-      //  Toast.makeText(this,"Su pedido de "+item+" con "+nom_masa+" a S/."+costo+".00 + IGV está en proceso de envío.",Toast.LENGTH_SHORT).show();
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create();
         alertDialog.setTitle("Confirmación de pedido");
@@ -103,7 +101,7 @@ public class OrdenActivity extends AppCompatActivity {
 
 
         // Notification
-        Notification notification = new NotificationCompat.Builder(this)
+        final Notification notification = new NotificationCompat.Builder(this)
                 .setContentTitle("Confirmación pedido de pizza")
                 .setContentText("¡Su orden ya está en camino!")
                 .setSmallIcon(R.drawable.ic_pizza)
@@ -114,8 +112,14 @@ public class OrdenActivity extends AppCompatActivity {
                 .build();
 
 
-                NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+        final   NotificationManager notificationManager = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run(){
                 notificationManager.notify(0, notification);
+            }
+        }, 10000);
 
 
     }
